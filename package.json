@@ -1,0 +1,42 @@
+{
+  "name": "koa2-mongodb-mongoose",
+  "version": "1.0.0",
+  "description": "为前端提供服务器接口",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wcl-git/koa2-mongodb-mongoose.git"
+  },
+  "keywords": [
+    "koa2",
+    "node",
+    "mongodb"
+  ],
+  "author": "wuchunlei",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wcl-git/koa2-mongodb-mongoose/issues"
+  },
+  "homepage": "https://github.com/wcl-git/koa2-mongodb-mongoose#readme",
+  "dependencies": {
+    "@babel/core": "^7.6.0",
+    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
+    "@babel/plugin-transform-runtime": "^7.6.0",
+    "@babel/preset-env": "^7.6.0",
+    "@babel/register": "^7.6.0",
+    "@babel/runtime": "^7.6.0",
+    "bluebird": "^3.5.5",
+    "koa": "^2.8.1",
+    "koa-bodyparser": "^4.2.1",
+    "koa-logger": "^3.2.1",
+    "koa-router": "^7.4.0",
+    "koa-session": "^5.12.3",
+    "mongoose": "^5.7.1",
+    "uuid": "^3.3.3",
+    "xss": "^1.0.6"
+  }
+}
