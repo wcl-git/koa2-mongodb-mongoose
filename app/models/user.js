@@ -25,7 +25,6 @@ const UserSchema = new Schema({
   gender: String,
   breed: String,
   age: String,
-  avatar: String,
   meta: {
     createAt: {
       type: Date,

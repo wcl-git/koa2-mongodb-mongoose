@@ -16,14 +16,20 @@ const signup = async (ctx, next) => {
 	  phoneNumber: phoneNumber
 	}).exec()
   console.log(user)
-	
+	if(user) {
+    console.log('数据库已经存在该号码记录');
+    ctx.body = {
+      success: false,
+      data: user,
+    }
+    return2;
+  }
 	const verifyCode = Math.floor(Math.random()*10000+1)
 	if (!user) {
 	  const accessToken = uuid.v4()
 
 	  user = new User({
 	    nickname: '测试用户',
-	    avatar: 'http://upload-images.jianshu.io/upload_images/5307186-eda1b28e54a4d48e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240',
 	    phoneNumber: xss(phoneNumber),
 	    verifyCode: verifyCode,
 	    accessToken: accessToken
@@ -54,7 +60,7 @@ const signup = async (ctx, next) => {
 const update = async (ctx, next) => {
   const body = ctx.request.body
   let user = ctx.session.user
-  const fields = 'avatar,gender,age,nickname,breed'.split(',')
+  const fields = 'gender,age,nickname,breed'.split(',')
 
   fields.forEach(function(field) {
     if (body[field]) {
@@ -69,7 +75,6 @@ const update = async (ctx, next) => {
     data: {
       nickname: user.nickname,
       accessToken: user.accessToken,
-      avatar: user.avatar,
       age: user.age,
       breed: user.breed,
       gender: user.gender,
@@ -96,7 +101,6 @@ const users = async (ctx, next) => {
 const addUser = async (ctx, next) => {
   const user = new User({
       nickname: '测试用户',
-      avatar: 'http://ip.example.com/u/xxx.png',
       phoneNumber: xss('13800138000'),
       verifyCode: '5896',
       accessToken: uuid.v4()
@@ -112,7 +116,6 @@ const addUser = async (ctx, next) => {
 
 const deleteUser = async (ctx, next) => {
   const phoneNumber = xss(ctx.request.body.phoneNumber.trim())
-  console.log(phoneNumber)
   const data  = await userHelper.deleteUser({phoneNumber})
   ctx.body = {
     success: true,
