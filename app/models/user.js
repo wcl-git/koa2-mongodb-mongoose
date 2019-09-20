@@ -1,5 +1,4 @@
-
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
 const Schema = mongoose.Schema;
 
@@ -10,7 +9,7 @@ const Schema = mongoose.Schema;
  * 除了定义结构外，还定义文档的实例方法，静态模型方法，复合索引，中间件等
  */
 const UserSchema = new Schema({
-	phoneNumber: {
+  phoneNumber: {
     unique: true,
     type: String
   },
@@ -35,28 +34,26 @@ const UserSchema = new Schema({
       dafault: Date.now()
     }
   }
-})
+});
 
 // Defines a pre hook for the document.
-UserSchema.pre('save', function(next) {
+UserSchema.pre("save", function(next) {
   if (this.isNew) {
-    this.meta.createAt = this.meta.updateAt = Date.now()
+    this.meta.createAt = this.meta.updateAt = Date.now();
+  } else {
+    this.meta.updateAt = Date.now();
   }
-  else {
-    this.meta.updateAt = Date.now()
-  }
-  next()
-})
-
+  next();
+});
 
 /**
  * 定义模型User
  * 模型用来实现我们定义的模式，调用mongoose.model来编译Schema得到Model
  */
 // 参数User 数据库中的集合名称, 不存在会创建.
-const User = mongoose.model('User', UserSchema)
+const User = mongoose.model("User", UserSchema);
 
- export default User
+export default User;
 
 /**
  * nodejs中文社区这篇帖子对mongoose的用法总结的不错：https://cnodejs.org/topic/548e54d157fd3ae46b233502

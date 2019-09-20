@@ -53,10 +53,17 @@ mongoose.connect(db, (err) => {
 // walk(models_path)
 
 
-app.keys = ['wuchunlei']
-app.use(logger())
-app.use(session(app))
-app.use(bodyParser())
+app.keys = ['wuchunlei'];
+app.use(logger());
+app.use(session(app));
+app.use(bodyParser());
+
+// 错误统一处理
+app.on('error', (err, ctx) => {
+  ctx.status = err.status || 500;
+  ctx.type = 'application/json';
+  ctx.body = {error: '错误统一处理'}
+});
 
 // 使用路由转发请求
 app
