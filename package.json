@@ -35,7 +35,7 @@
     "koa-logger": "^3.2.1",
     "koa-router": "^7.4.0",
     "koa-session": "^5.12.3",
-    "mongoose": "^5.7.1",
+    "mongoose": "^5.7.5",
     "uuid": "^3.3.3",
     "xss": "^1.0.6"
   }
